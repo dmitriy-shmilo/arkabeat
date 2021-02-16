@@ -5,6 +5,7 @@ onready var _sprite: Sprite = $Sprite
 onready var _audio: AudioStreamPlayer = $Audio
 onready var _beat_sprite: Sprite = $BeatSprite
 onready var _tween: Tween = $Tween
+onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 const Beat1 = preload("res://bat/beat1.wav")
 const Beat2 = preload("res://bat/beat2.wav")
@@ -32,4 +33,5 @@ func _on_Projectile_collided(other):
 		_tween.interpolate_property(_sprite, "scale", Vector2(1.3, 1.3), \
 			Vector2(1.0, 1.0), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.1)
 		_tween.start()
+		_animation_player.play("Hit")
 		

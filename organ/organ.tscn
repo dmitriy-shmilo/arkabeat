@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://organ/organ.gd" type="Script" id=1]
 [ext_resource path="res://organ/organs.png" type="Texture" id=2]
@@ -6,6 +6,30 @@
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Hit"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_hit_frame"
+}, {
+"args": [  ],
+"method": "play_normal_frame"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Normal"
 
 [node name="Organ" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,3 +51,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="ResourceTween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 2 )
+anims/Normal = SubResource( 3 )

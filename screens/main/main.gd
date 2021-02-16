@@ -43,6 +43,7 @@ func _on_Projectile_collided(other):
 		_audio.play()
 	elif other.get_parent() is Organ:
 		var organ = (other.get_parent() as Organ)
+		organ.get_hit()
 		_score += 1
 		emit_signal("score_changed", _score)
 		

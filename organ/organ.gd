@@ -27,13 +27,12 @@ export (RESOURCE_TYPE) var consumed_resource = RESOURCE_TYPE.NONE
 onready var _sprite: Sprite = $Sprite
 onready var _resource_tween: Tween = $ResourceTween
 onready var _resource_sprite: Sprite = $ResourceSprite
-
+onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	# TODO: clean up magic numbers
 	_sprite.region_rect.position.y = _get_sprite_frame() * 32
 	_resource_sprite.region_rect.position.x = _get_resource_frame(provided_resource) * 16
-	print(_get_resource_frame(_resource_sprite.region_rect.position.y))
 
 
 func consume_if_needed(resource):
@@ -44,6 +43,18 @@ func retrieve_resource():
 	if provided_resource != RESOURCE_TYPE.NONE:
 		_show_resource()
 	return provided_resource
+
+
+func get_hit():
+	_animation_player.play("Hit")
+
+
+func play_hit_frame():
+	_sprite.region_rect.position.x = 32
+
+
+func play_normal_frame():
+	_sprite.region_rect.position.x = 0
 
 
 func _show_resource():
