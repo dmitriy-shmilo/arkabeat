@@ -4,6 +4,8 @@ const SPEEDUP_AMOUNT = 10.0
 const BAT_Y_ALLOWANCE = 50.0
 const LooseStream = preload("res://screens/main/loose.wav")
 
+signal score_changed(new_score)
+
 onready var _projectile: Projectile = $Projectile
 onready var _bat: Bat = $Bat
 onready var _floor = $Floor
@@ -12,6 +14,7 @@ onready var _left_wall = $LeftWall
 onready var _right_wall = $RightWall
 onready var _audio: AudioStreamPlayer = $Audio
 
+var _score: int = 0
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -30,4 +33,6 @@ func _on_Projectile_collided(other):
 		_audio.stream = LooseStream
 		_audio.play()
 	elif other.get_parent() is Organ:
+		_score += 1
+		emit_signal("score_changed", _score)
 		(other.get_parent() as Organ).show_powerup(null)
