@@ -25,6 +25,11 @@ var _resources: Dictionary = {
 	Organ.RESOURCE_TYPE.ENERGY : 0,
 }
 
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
