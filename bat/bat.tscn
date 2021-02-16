@@ -5,7 +5,7 @@
 [ext_resource path="res://bat/bat.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.0
+radius = 24.0
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -36,13 +36,12 @@ position = Vector2( 163.983, 199.9 )
 script = ExtResource( 3 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 24, 0, 24, 24 )
+region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 
@@ -50,3 +49,5 @@ region_rect = Rect2( 24, 0, 24, 24 )
 frames = SubResource( 6 )
 frame = 4
 speed_scale = 4.0
+
+[node name="Tween" type="Tween" parent="."]
