@@ -55,6 +55,10 @@ func play_hit_frame():
 
 func play_normal_frame():
 	_sprite.region_rect.position.x = 0
+	
+
+func play_sleep_frame():
+	_sprite.region_rect.position.x = 64
 
 
 func _show_resource():
