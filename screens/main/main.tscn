@@ -49,20 +49,32 @@ shape = SubResource( 4 )
 position = Vector2( 149.669, 299.807 )
 
 [node name="Organ" parent="." instance=ExtResource( 5 )]
-position = Vector2( 97.5438, 113.645 )
-organ_type = 1
+position = Vector2( 217.066, 99.385 )
+organ_type = 7
+
+[node name="Organ5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 187.769, 184.424 )
+organ_type = 6
+
+[node name="Organ6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 147.323, 129.201 )
+organ_type = 3
+
+[node name="Organ7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 293.809, 136.719 )
+organ_type = 4
 
 [node name="Organ3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 237.35, 74.5533 )
-organ_type = 1
+position = Vector2( 273.906, 58.9973 )
+organ_type = 2
 
 [node name="Organ4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 160.524, 63.4232 )
+position = Vector2( 143.931, 64.4602 )
 organ_type = 1
 
 [node name="Organ2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 349.065, 112.476 )
-organ_type = 2
+position = Vector2( 214.246, 25.3625 )
+organ_type = 5
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 [connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
