@@ -1,6 +1,7 @@
 extends Node2D
 
-const BAT_Y_ALLOWANCE = 50
+const SPEEDUP_AMOUNT = 10.0
+const BAT_Y_ALLOWANCE = 50.0
 const LooseStream = preload("res://screens/main/loose.wav")
 
 onready var _projectile: Projectile = $Projectile
@@ -18,15 +19,14 @@ func _unhandled_input(event):
 		position.y = clamp(position.y, \
 			get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
 			get_viewport_rect().size.y)
+		position.x = clamp(position.x, \
+			0, get_viewport_rect().size.x)
 		_bat.position = position
 
 
 func _on_Projectile_collided(other):
-	if other == _ceiling:
-		_projectile.speed += 5
-	elif other == _left_wall or other == _right_wall:
-		_projectile.speed += 1
-	elif other == _floor:
+	_projectile.speed_up(SPEEDUP_AMOUNT)
+	if other == _floor:
 		_audio.stream = LooseStream
 		_audio.play()
 	elif other.get_parent() is Organ:
