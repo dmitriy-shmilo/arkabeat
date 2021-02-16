@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://organ/organ.gd" type="Script" id=1]
+[ext_resource path="res://organ/organs.png" type="Texture" id=2]
+[ext_resource path="res://organ/icons.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Organ" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 24, 24 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="Powerup" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="PowerupTween" type="Tween" parent="."]

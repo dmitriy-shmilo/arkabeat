@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/beat1.wav-e5365507dc0bc9f3958a06144f0be300.sample"
+
+[deps]
+
+source_file="res://bat/beat1.wav"
+dest_files=[ "res://.import/beat1.wav-e5365507dc0bc9f3958a06144f0be300.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
