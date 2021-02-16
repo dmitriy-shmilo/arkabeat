@@ -4,7 +4,7 @@ extends KinematicBody2D
 signal collided(other)
 
 export (Vector2) var direction: Vector2 = Vector2.UP
-export (float) var speed: float = 120.0
+export (float) var speed: float = 150.0
 export (float) var max_speed: float = 500.0
 
 func speed_up(amount: float):

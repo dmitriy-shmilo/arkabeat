@@ -20,10 +20,10 @@ region_rect = Rect2( 0, 0, 32, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 1 )
 
-[node name="Powerup" type="Sprite" parent="."]
+[node name="ResourceSprite" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 
-[node name="PowerupTween" type="Tween" parent="."]
+[node name="ResourceTween" type="Tween" parent="."]

@@ -1,10 +1,14 @@
 extends Node2D
 
-const SPEEDUP_AMOUNT = 10.0
+const Organ = preload("res://organ/organ.gd")
+
+const SPEEDUP_AMOUNT = 3.0
 const BAT_Y_ALLOWANCE = 50.0
 const LooseStream = preload("res://screens/main/loose.wav")
 
 signal score_changed(new_score)
+signal resource_lost(resource)
+signal resource_gained(resource)
 
 onready var _projectile: Projectile = $Projectile
 onready var _bat: Bat = $Bat
@@ -15,6 +19,11 @@ onready var _right_wall = $RightWall
 onready var _audio: AudioStreamPlayer = $Audio
 
 var _score: int = 0
+var _resources: Dictionary = {
+	Organ.RESOURCE_TYPE.OXYGEN : 0,
+	Organ.RESOURCE_TYPE.NUTRITION : 0,
+	Organ.RESOURCE_TYPE.ENERGY : 0,
+}
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -33,6 +42,19 @@ func _on_Projectile_collided(other):
 		_audio.stream = LooseStream
 		_audio.play()
 	elif other.get_parent() is Organ:
+		var organ = (other.get_parent() as Organ)
 		_score += 1
 		emit_signal("score_changed", _score)
-		(other.get_parent() as Organ).show_powerup(null)
+		
+		if organ.consumed_resource != Organ.RESOURCE_TYPE.NONE \
+			and _resources[organ.consumed_resource] > 0:
+			_resources[organ.consumed_resource] = 0
+			emit_signal("resource_lost", organ.consumed_resource)
+		
+		var res = organ.retrieve_resource()
+		
+		if res == Organ.RESOURCE_TYPE.NONE:
+			return
+		
+		_resources[res] = 1
+		emit_signal("resource_gained", res)
