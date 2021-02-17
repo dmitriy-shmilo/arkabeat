@@ -16,7 +16,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.2, 0.2, 0.2, 1 )
+color = Color( 0.635294, 0.423529, 0.423529, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -71,6 +71,9 @@ text = "quit"
 
 [node name="Settings" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="ColorRect" parent="Settings" index="0"]
+color = Color( 0.635294, 0.423529, 0.423529, 1 )
 
 [node name="QuitButton" parent="Settings/VBoxContainer" index="4"]
 visible = false

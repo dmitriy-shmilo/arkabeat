@@ -122,10 +122,12 @@ __meta__ = {
 [node name="Score" type="Label" parent="CanvasLayer/GUI"]
 anchor_top = -0.00648174
 anchor_bottom = -0.00648174
-margin_left = 4.0
-margin_top = 0.25927
-margin_right = 89.0
-margin_bottom = 14.2593
+margin_left = 5.0
+margin_top = 7.07416
+margin_right = 90.0
+margin_bottom = 21.0742
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -189,8 +191,8 @@ text = "resume"
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
 [connection signal="resource_lost" from="." to="CanvasLayer/GUI" method="_on_Main_resource_lost"]
 [connection signal="score_changed" from="." to="CanvasLayer/GUI" method="_on_Main_score_changed"]
-[connection signal="collided" from="Projectile" to="." method="_on_Projectile_collided"]
 [connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
+[connection signal="collided" from="Projectile" to="." method="_on_Projectile_collided"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_back_pressed"]
 
 [editable path="CanvasLayer/GUI/Settings"]
