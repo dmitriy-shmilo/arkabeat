@@ -4,6 +4,7 @@ const Organ = preload("res://organ/organ.gd")
 
 const SPEEDUP_AMOUNT = 3.0
 const BAT_Y_ALLOWANCE = 50.0
+const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
 
 signal score_changed(new_score)
@@ -17,6 +18,7 @@ onready var _ceiling = $Ceiling
 onready var _left_wall = $LeftWall
 onready var _right_wall = $RightWall
 onready var _audio: AudioStreamPlayer = $Audio
+onready var _settings = $CanvasLayer/GUI/Settings
 
 var _score: int = 0
 var _resources: Dictionary = {
@@ -26,11 +28,7 @@ var _resources: Dictionary = {
 }
 
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-
-
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
 		position.y = clamp(position.y, \
@@ -39,6 +37,11 @@ func _unhandled_input(event):
 		position.x = clamp(position.x, \
 			0, get_viewport_rect().size.x)
 		_bat.position = position
+		return
+		
+	if event.is_action("pause"):
+		_settings.visible = true
+		get_tree().paused = true
 
 
 func _on_Projectile_collided(other):
@@ -64,3 +67,8 @@ func _on_Projectile_collided(other):
 		
 		_resources[res] = 1
 		emit_signal("resource_gained", res)
+
+
+func _on_Settings_back_pressed():
+	_settings.visible = false
+	get_tree().paused = false
