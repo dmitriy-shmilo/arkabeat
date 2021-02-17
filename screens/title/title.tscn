@@ -75,3 +75,5 @@ visible = false
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="back_pressed" from="Settings" to="." method="_on_Settings_back_pressed"]
+
+[editable path="Settings"]

@@ -28,6 +28,10 @@ var _resources: Dictionary = {
 }
 
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
@@ -42,6 +46,7 @@ func _input(event):
 	if event.is_action("pause"):
 		_settings.visible = true
 		get_tree().paused = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _on_Projectile_collided(other):
@@ -72,3 +77,4 @@ func _on_Projectile_collided(other):
 func _on_Settings_back_pressed():
 	_settings.visible = false
 	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
