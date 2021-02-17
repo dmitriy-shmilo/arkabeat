@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/one_up.wav-cbacf259fd095d3609e97cfe4f5d861c.sample"
+
+[deps]
+
+source_file="res://screens/main/one_up.wav"
+dest_files=[ "res://.import/one_up.wav-cbacf259fd095d3609e97cfe4f5d861c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

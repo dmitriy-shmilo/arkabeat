@@ -8,11 +8,13 @@ enum GAME_STATE {
 
 const Organ = preload("res://organ/organ.gd")
 
+const SCORE_PER_LIFE = 50
 const SPEEDUP_AMOUNT = 5.0
 const BAT_Y_ALLOWANCE = 50.0
 const PROJECTILE_OFFSET = 40.0
 const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
+const OneUpStream = preload("res://screens/main/one_up.wav")
 
 signal score_changed(new_score)
 signal lives_changed(new_lives)
@@ -28,8 +30,8 @@ onready var _right_wall = $RightWall
 onready var _audio: AudioStreamPlayer = $Audio
 onready var _settings = $CanvasLayer/GUI/Settings
 
-var _score: int = 0
-var _lives: int = 3
+var _score: int = 0 setget _set_score
+var _lives: int = 3 setget _set_lives
 var _state = GAME_STATE.LAUNCHING
 
 var _resources: Dictionary = {
@@ -80,13 +82,28 @@ func _set_state(new_state):
 			_projectile.direction = Vector2.UP
 
 
+func _set_score(new_score):
+	_score = new_score
+	if _score % SCORE_PER_LIFE == 0:
+		_set_lives(_lives + 1)
+		if not _audio.playing:
+			_audio.stream = OneUpStream
+			_audio.play()
+	emit_signal("score_changed", _score)
+
+
+func _set_lives(new_lives):
+	_lives = new_lives
+	emit_signal("lives_changed", _lives)
+
+
 func _on_Projectile_collided(other):
 	if other == _floor:
 		_set_state(GAME_STATE.LAUNCHING)
-		_lives -= 1
-		emit_signal("lives_changed", _lives)
-		_audio.stream = LooseStream
-		_audio.play()
+		_set_lives(_lives - 1)
+		if not _audio.playing:
+			_audio.stream = LooseStream
+			_audio.play()
 
 		if _lives <= 0:
 			_projectile.visible = false
@@ -105,8 +122,7 @@ func _on_Projectile_collided(other):
 		if organ.consumed_resource != Organ.RESOURCE_TYPE.NONE \
 			and _resources[organ.consumed_resource] > 0:
 			organ.consume_if_needed(organ.consumed_resource)
-			_score += 1
-			emit_signal("score_changed", _score)
+			_set_score(_score + 1)
 			_resources[organ.consumed_resource] = 0
 			emit_signal("resource_lost", organ.consumed_resource)
 		
@@ -118,8 +134,7 @@ func _on_Projectile_collided(other):
 		if _resources[res] > 0:
 			return
 
-		_score += 1
-		emit_signal("score_changed", _score)
+		_set_score(_score +  1)
 		_resources[res] = 1
 		emit_signal("resource_gained", res)
 	elif other.get_parent() is Bat:

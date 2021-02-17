@@ -246,7 +246,7 @@ visible = false
 [node name="ColorRect" parent="CanvasLayer/GUI/Settings" index="0"]
 color = Color( 0.2, 0.2, 0.2, 0.764706 )
 
-[node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer" index="3"]
+[node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer" index="4"]
 text = "resume"
 [connection signal="lives_changed" from="." to="CanvasLayer/GUI" method="_on_Main_lives_changed"]
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
