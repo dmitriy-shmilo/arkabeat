@@ -36,7 +36,15 @@ func _ready():
 	emit_signal("lives_changed", _lives)
 
 
-func _input(event):
+func _unhandled_key_input(event: InputEventKey):
+	if event.is_action_released("pause"):
+		get_tree().set_input_as_handled()
+		_settings.visible = true
+		get_tree().paused = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
 		position.y = clamp(_bat.position.y + event.relative.y, \
@@ -46,15 +54,9 @@ func _input(event):
 			0, get_viewport_rect().size.x)
 		_bat.position = position
 		return
-		
-	if event.is_action("pause"):
-		_settings.visible = true
-		get_tree().paused = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _on_Projectile_collided(other):
-	
 	if other == _floor:
 		_lives -= 1
 		emit_signal("lives_changed", _lives)

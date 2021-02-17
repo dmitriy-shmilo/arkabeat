@@ -9,6 +9,13 @@ func _ready():
 	_quit_button.visible = _quit_button.visible and not OS.has_feature("HTML5")
 	_load_settings()
 
+
+func _unhandled_key_input(event: InputEventKey):
+	if visible and event.is_action_released("pause"):
+		get_tree().set_input_as_handled()
+		emit_signal("back_pressed")
+
+
 func _load_settings():
 	_sfx_slider.value = PersistedSettings.sfx_volume
 
