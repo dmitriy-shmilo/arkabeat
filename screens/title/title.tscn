@@ -71,6 +71,9 @@ text = "quit"
 
 [node name="Settings" parent="." instance=ExtResource( 3 )]
 visible = false
+
+[node name="QuitButton" parent="Settings/VBoxContainer" index="3"]
+visible = false
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

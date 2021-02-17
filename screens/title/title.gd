@@ -7,8 +7,7 @@ onready var _settings = $Settings
 
 func _ready():
 	_quit_button.visible = not OS.has_feature("HTML5")
-	# simply hiding the button in node editor seems to be broken
-	$Settings/VBoxContainer/.remove_child($Settings/VBoxContainer/QuitButton)
+
 
 func _on_NewGameButton_pressed():
 	get_tree().change_scene("res://screens/main/main.tscn")
