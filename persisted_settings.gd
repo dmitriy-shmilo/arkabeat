@@ -5,6 +5,7 @@ const MAX_VOLUME = 100.0
 var best_score = 0
 var last_score = 0
 var sfx_volume: float = MAX_VOLUME setget set_sfx_volume
+var enable_particles = true
 
 var _sfx_bus
 var _music_bus

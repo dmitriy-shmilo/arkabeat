@@ -24,5 +24,6 @@ func _physics_process(delta):
 
 func set_direction(value):
 	direction = value
-	_trail_particles.visible = value != Vector2.ZERO
+	_trail_particles.visible = \
+		value != Vector2.ZERO and PersistedSettings.enable_particles
 	

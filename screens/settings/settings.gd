@@ -39,3 +39,7 @@ func _on_Sfxslider_value_changed(value):
 
 func _on_FullscreenButton_pressed():
 	OS.set_window_fullscreen(!OS.window_fullscreen)
+
+
+func _on_ParticlesCheckbox_toggled(button_pressed):
+	PersistedSettings.enable_particles = button_pressed
