@@ -2,7 +2,7 @@ extends Node2D
 
 const Organ = preload("res://organ/organ.gd")
 
-const SPEEDUP_AMOUNT = 3.0
+const SPEEDUP_AMOUNT = 5.0
 const BAT_Y_ALLOWANCE = 50.0
 const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
@@ -54,7 +54,7 @@ func _input(event):
 
 
 func _on_Projectile_collided(other):
-	_projectile.speed_up(SPEEDUP_AMOUNT)
+	
 	if other == _floor:
 		_lives -= 1
 		emit_signal("lives_changed", _lives)
@@ -70,15 +70,15 @@ func _on_Projectile_collided(other):
 
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().change_scene("res://screens/game_over/game_over.tscn")
-
 	elif other.get_parent() is Organ:
 		var organ = (other.get_parent() as Organ)
 		organ.get_hit()
-		_score += 1
-		emit_signal("score_changed", _score)
 		
 		if organ.consumed_resource != Organ.RESOURCE_TYPE.NONE \
 			and _resources[organ.consumed_resource] > 0:
+			organ.consume_if_needed(organ.consumed_resource)
+			_score += 1
+			emit_signal("score_changed", _score)
 			_resources[organ.consumed_resource] = 0
 			emit_signal("resource_lost", organ.consumed_resource)
 		
@@ -87,8 +87,15 @@ func _on_Projectile_collided(other):
 		if res == Organ.RESOURCE_TYPE.NONE:
 			return
 		
+		if _resources[res] > 0:
+			return
+
+		_score += 1
+		emit_signal("score_changed", _score)
 		_resources[res] = 1
 		emit_signal("resource_gained", res)
+	elif other.get_parent() is Bat:
+		_projectile.speed_up(SPEEDUP_AMOUNT)
 
 
 func _on_Settings_back_pressed():

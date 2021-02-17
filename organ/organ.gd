@@ -31,8 +31,10 @@ export (RESOURCE_TYPE) var consumed_resource = RESOURCE_TYPE.NONE
 
 onready var _sprite: Sprite = $Sprite
 onready var _resource_tween: Tween = $ResourceTween
+onready var _consumed_resource_tween: Tween = $ConsumedResourceTween
 onready var _hit_tween: Tween = $HitTween
 onready var _resource_sprite: Sprite = $ResourceSprite
+onready var _consumed_resource_sprite: Sprite = $ConsumedResourceSprite
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 onready var _sleeping_indicator: AnimatedSprite = $SleepingIndicator
 onready var _audio: AudioStreamPlayer = $Audio
@@ -41,15 +43,19 @@ func _ready():
 	# TODO: clean up magic numbers
 	_sprite.region_rect.position.y = _get_sprite_frame() * 32
 	_resource_sprite.region_rect.position.x = _get_resource_frame(provided_resource) * 16
+	_consumed_resource_sprite.region_rect.position.x = _get_resource_frame(consumed_resource) * 16
 
 
 func consume_if_needed(resource):
-	return resource == consumed_resource
+	if resource == consumed_resource:
+		_show_consumed_resource()
+		return true
+	return false
 
 
 func retrieve_resource():
 	if provided_resource != RESOURCE_TYPE.NONE:
-		_show_resource()
+		_show_provided_resource()
 	return provided_resource
 
 
@@ -79,7 +85,7 @@ func play_sleep_frame():
 	_sprite.region_rect.position.x = 64
 
 
-func _show_resource():
+func _show_provided_resource():
 	_resource_sprite.visible = true
 	_resource_tween.interpolate_property(_resource_sprite, "position", \
 		Vector2(0, 0), Vector2(0, -30), 0.4, \
@@ -87,6 +93,16 @@ func _show_resource():
 	_resource_tween.start()
 	yield(_resource_tween, "tween_all_completed")
 	_resource_sprite.visible = false
+
+
+func _show_consumed_resource():
+	_consumed_resource_sprite.visible = true
+	_consumed_resource_tween.interpolate_property(_consumed_resource_sprite, \
+	 	"scale", Vector2(1.5, 1.5), Vector2(0.1, 0.1), 0.4, \
+		Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	_consumed_resource_tween.start()
+	yield(_consumed_resource_tween, "tween_all_completed")
+	_consumed_resource_sprite.visible = false
 
 
 func _get_sprite_frame():
@@ -107,6 +123,7 @@ func _get_sprite_frame():
 			return 6
 		ORGAN_TYPE.LIVER:
 			return 7
+
 
 func _get_resource_frame(resource):
 	match resource:
