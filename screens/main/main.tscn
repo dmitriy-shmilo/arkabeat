@@ -182,13 +182,13 @@ visible = false
 [node name="ColorRect" parent="CanvasLayer/GUI/Settings" index="0"]
 color = Color( 0.2, 0.2, 0.2, 0.764706 )
 
-[node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer" index="2"]
+[node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer" index="3"]
 text = "resume"
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
 [connection signal="resource_lost" from="." to="CanvasLayer/GUI" method="_on_Main_resource_lost"]
 [connection signal="score_changed" from="." to="CanvasLayer/GUI" method="_on_Main_score_changed"]
-[connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
 [connection signal="collided" from="Projectile" to="." method="_on_Projectile_collided"]
+[connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_back_pressed"]
 
 [editable path="CanvasLayer/GUI/Settings"]

@@ -26,6 +26,7 @@ export (RESOURCE_TYPE) var consumed_resource = RESOURCE_TYPE.NONE
 
 onready var _sprite: Sprite = $Sprite
 onready var _resource_tween: Tween = $ResourceTween
+onready var _hit_tween: Tween = $HitTween
 onready var _resource_sprite: Sprite = $ResourceSprite
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -47,6 +48,13 @@ func retrieve_resource():
 
 func get_hit():
 	_animation_player.play("Hit")
+	_hit_tween.interpolate_property(_sprite, "scale", Vector2(1.0, 1.0), \
+			Vector2(0.9, 0.9), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.0)
+	_hit_tween.interpolate_property(_sprite, "scale", Vector2(1.0, 1.0), \
+			Vector2(1.2, 1.2), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.1)
+	_hit_tween.interpolate_property(_sprite, "scale", Vector2(1.2, 1.2), \
+		Vector2(1.0, 1.0), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.2)
+	_hit_tween.start()
 
 
 func play_hit_frame():

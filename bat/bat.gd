@@ -29,9 +29,11 @@ func _on_Projectile_collided(other):
 		_beat_sprite.play()
 		
 		_tween.interpolate_property(_sprite, "scale", Vector2(1.0, 1.0), \
-			Vector2(1.3, 1.3), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.0)
+			Vector2(0.8, 0.8), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.0)
+		_tween.interpolate_property(_sprite, "scale", Vector2(1.0, 1.0), \
+			Vector2(1.3, 1.3), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.1)
 		_tween.interpolate_property(_sprite, "scale", Vector2(1.3, 1.3), \
-			Vector2(1.0, 1.0), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.1)
+			Vector2(1.0, 1.0), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.2)
 		_tween.start()
 		_animation_player.play("Hit")
 		
