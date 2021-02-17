@@ -28,3 +28,7 @@ func _on_Settings_visibility_changed():
 
 func _on_Sfxslider_value_changed(value):
 	PersistedSettings.sfx_volume = value
+
+
+func _on_FullscreenButton_pressed():
+	OS.set_window_fullscreen(!OS.window_fullscreen)

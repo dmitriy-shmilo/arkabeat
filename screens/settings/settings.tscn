@@ -60,18 +60,25 @@ margin_right = 200.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="FullscreenButton" type="Button" parent="VBoxContainer"]
 margin_top = 59.0
 margin_right = 200.0
 margin_bottom = 78.0
-text = "back"
+text = "toggle fullscreen"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer"]
 margin_top = 93.0
 margin_right = 200.0
 margin_bottom = 112.0
+text = "back"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 127.0
+margin_right = 200.0
+margin_bottom = 146.0
 text = "quit"
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer/Sfxslider" to="." method="_on_Sfxslider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
