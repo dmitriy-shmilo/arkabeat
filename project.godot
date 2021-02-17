@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Arkabeat"
-run/main_scene="res://screens/main/main.tscn"
+run/main_scene="res://screens/title/title.tscn"
 config/icon="res://icon.png"
 
 [display]
