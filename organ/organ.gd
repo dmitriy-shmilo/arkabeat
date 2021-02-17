@@ -29,6 +29,7 @@ onready var _resource_tween: Tween = $ResourceTween
 onready var _hit_tween: Tween = $HitTween
 onready var _resource_sprite: Sprite = $ResourceSprite
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
+onready var _sleeping_indicator: AnimatedSprite = $SleepingIndicator
 
 func _ready():
 	# TODO: clean up magic numbers

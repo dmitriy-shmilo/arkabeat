@@ -35,6 +35,45 @@ script = ExtResource( 1 )
 position = Vector2( 240, 160 )
 texture = ExtResource( 4 )
 
+[node name="Organs" type="Node2D" parent="."]
+
+[node name="Organ" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 217.066, 99.385 )
+organ_type = 7
+provided_resource = 2
+consumed_resource = 1
+
+[node name="Organ5" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 187.769, 184.424 )
+organ_type = 6
+provided_resource = 3
+consumed_resource = 2
+
+[node name="Organ6" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 147.323, 129.201 )
+organ_type = 3
+consumed_resource = 1
+
+[node name="Organ7" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 293.809, 136.719 )
+organ_type = 4
+consumed_resource = 1
+
+[node name="Organ3" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 273.906, 58.9973 )
+organ_type = 2
+provided_resource = 1
+
+[node name="Organ4" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 143.931, 64.4602 )
+organ_type = 1
+provided_resource = 1
+
+[node name="Organ2" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 214.246, 25.3625 )
+organ_type = 5
+consumed_resource = 3
+
 [node name="Projectile" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 260 )
 
@@ -64,43 +103,6 @@ shape = SubResource( 2 )
 
 [node name="Bat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 300 )
-
-[node name="Organ" parent="." instance=ExtResource( 5 )]
-position = Vector2( 217.066, 99.385 )
-organ_type = 7
-provided_resource = 2
-consumed_resource = 1
-
-[node name="Organ5" parent="." instance=ExtResource( 5 )]
-position = Vector2( 187.769, 184.424 )
-organ_type = 6
-provided_resource = 3
-consumed_resource = 2
-
-[node name="Organ6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 147.323, 129.201 )
-organ_type = 3
-consumed_resource = 1
-
-[node name="Organ7" parent="." instance=ExtResource( 5 )]
-position = Vector2( 293.809, 136.719 )
-organ_type = 4
-consumed_resource = 1
-
-[node name="Organ3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 273.906, 58.9973 )
-organ_type = 2
-provided_resource = 1
-
-[node name="Organ4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 143.931, 64.4602 )
-organ_type = 1
-provided_resource = 1
-
-[node name="Organ2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 214.246, 25.3625 )
-organ_type = 5
-consumed_resource = 3
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 bus = "Sfx"
