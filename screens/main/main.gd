@@ -39,7 +39,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
-		position.y = clamp(position.y, \
+		position.y = clamp(_bat.position.y + event.relative.y, \
 			get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
 			get_viewport_rect().size.y)
 		position.x = clamp(position.x, \

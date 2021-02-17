@@ -88,8 +88,11 @@ func play_sleep_frame():
 func _show_provided_resource():
 	_resource_sprite.visible = true
 	_resource_tween.interpolate_property(_resource_sprite, "position", \
-		Vector2(0, 0), Vector2(0, -30), 0.4, \
+		Vector2(0, 0), Vector2(0, 4), 0.2, \
 		Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	_resource_tween.interpolate_property(_resource_sprite, "position", \
+		Vector2(0, 4), Vector2(0, -28), 0.2, \
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0.2)
 	_resource_tween.start()
 	yield(_resource_tween, "tween_all_completed")
 	_resource_sprite.visible = false
@@ -98,8 +101,11 @@ func _show_provided_resource():
 func _show_consumed_resource():
 	_consumed_resource_sprite.visible = true
 	_consumed_resource_tween.interpolate_property(_consumed_resource_sprite, \
-	 	"scale", Vector2(1.5, 1.5), Vector2(0.1, 0.1), 0.4, \
+	 	"scale", Vector2(1.0, 1.0), Vector2(1.3, 1.3), 0.2, \
 		Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	_consumed_resource_tween.interpolate_property(_consumed_resource_sprite, \
+	 	"scale", Vector2(1.3, 1.3), Vector2(0.0, 0.0), 0.2, \
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0.2)
 	_consumed_resource_tween.start()
 	yield(_consumed_resource_tween, "tween_all_completed")
 	_consumed_resource_sprite.visible = false
