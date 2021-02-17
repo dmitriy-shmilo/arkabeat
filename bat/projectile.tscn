@@ -27,7 +27,8 @@ radius = 2.41501
 position = Vector2( 165.305, 122.035 )
 script = ExtResource( 2 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="TrailParticles" type="Particles2D" parent="."]
+visible = false
 amount = 40
 local_coords = false
 process_material = SubResource( 3 )

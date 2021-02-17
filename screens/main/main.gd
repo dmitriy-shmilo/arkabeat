@@ -1,9 +1,16 @@
 extends Node2D
 
+enum GAME_STATE {
+	PAUSE,
+	LAUNCHING,
+	PLAYING,
+}
+
 const Organ = preload("res://organ/organ.gd")
 
 const SPEEDUP_AMOUNT = 5.0
 const BAT_Y_ALLOWANCE = 50.0
+const PROJECTILE_OFFSET = 40.0
 const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
 
@@ -23,6 +30,7 @@ onready var _settings = $CanvasLayer/GUI/Settings
 
 var _score: int = 0
 var _lives: int = 3
+var _state = GAME_STATE.LAUNCHING
 
 var _resources: Dictionary = {
 	Organ.RESOURCE_TYPE.OXYGEN : 0,
@@ -45,7 +53,9 @@ func _unhandled_key_input(event: InputEventKey):
 
 
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseMotion:
+	if _state == GAME_STATE.LAUNCHING and event is InputEventMouseButton:
+		_set_state(GAME_STATE.PLAYING)
+	elif event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
 		position.y = clamp(_bat.position.y + event.relative.y, \
 			get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
@@ -53,18 +63,34 @@ func _unhandled_input(event: InputEvent):
 		position.x = clamp(position.x, \
 			0, get_viewport_rect().size.x)
 		_bat.position = position
-		return
+
+		if _state == GAME_STATE.LAUNCHING:
+			_projectile.position.x = _bat.position.x
+			_projectile.position.y = _bat.position.y - PROJECTILE_OFFSET
+
+
+func _set_state(new_state):
+	_state = new_state
+	match new_state:
+		GAME_STATE.LAUNCHING:
+			_projectile.position.x = _bat.position.x
+			_projectile.position.y = _bat.position.y - PROJECTILE_OFFSET
+			_projectile.direction = Vector2.ZERO
+		GAME_STATE.PLAYING:
+			_projectile.direction = Vector2.UP
 
 
 func _on_Projectile_collided(other):
 	if other == _floor:
+		_set_state(GAME_STATE.LAUNCHING)
 		_lives -= 1
 		emit_signal("lives_changed", _lives)
 		_audio.stream = LooseStream
 		_audio.play()
 
 		if _lives <= 0:
-			_projectile.queue_free()
+			_projectile.visible = false
+			_projectile.direction = Vector2.ZERO
 			yield(_audio, "finished")
 			PersistedSettings.last_score = _score
 			if _score > PersistedSettings.best_score:
