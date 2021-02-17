@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://screens/main/main.gd" type="Script" id=1]
 [ext_resource path="res://bat/projectile.tscn" type="PackedScene" id=2]
@@ -9,12 +9,17 @@
 [ext_resource path="res://screens/main/gui.gd" type="Script" id=7]
 [ext_resource path="res://organ/icons.png" type="Texture" id=8]
 [ext_resource path="res://screens/settings/settings.tscn" type="PackedScene" id=9]
+[ext_resource path="res://organ/organs.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 170 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 250, 5 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 80, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 8 )
@@ -27,6 +32,10 @@ region = Rect2( 32, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
 region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 10 )
+region = Rect2( 488, 8, 16, 15 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -119,12 +128,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScoreIcon" type="TextureRect" parent="CanvasLayer/GUI"]
+margin_left = 5.0
+margin_top = 12.0
+margin_right = 21.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 16, 16 )
+texture = SubResource( 6 )
+
 [node name="Score" type="Label" parent="CanvasLayer/GUI"]
 anchor_top = -0.00648174
 anchor_bottom = -0.00648174
-margin_left = 5.0
+margin_left = 22.0
 margin_top = 7.07416
-margin_right = 90.0
+margin_right = 107.0
 margin_bottom = 21.0742
 rect_scale = Vector2( 2, 2 )
 custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
@@ -188,6 +205,50 @@ color = Color( 0.2, 0.2, 0.2, 0.764706 )
 
 [node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer" index="3"]
 text = "resume"
+
+[node name="LivesContainer" type="HBoxContainer" parent="CanvasLayer/GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -42.0
+margin_top = 20.0
+margin_right = -5.0
+margin_bottom = 36.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LivesIcon" type="TextureRect" parent="CanvasLayer/GUI/LivesContainer"]
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
+texture = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="X" type="Label" parent="CanvasLayer/GUI/LivesContainer"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 26.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LivesCount" type="Label" parent="CanvasLayer/GUI/LivesContainer"]
+margin_left = 30.0
+margin_top = 1.0
+margin_right = 36.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="lives_changed" from="." to="CanvasLayer/GUI" method="_on_Main_lives_changed"]
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
 [connection signal="resource_lost" from="." to="CanvasLayer/GUI" method="_on_Main_resource_lost"]
 [connection signal="score_changed" from="." to="CanvasLayer/GUI" method="_on_Main_score_changed"]

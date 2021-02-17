@@ -2,6 +2,8 @@ extends Node
 
 const MAX_VOLUME = 100.0
 
+var best_score = 0
+var last_score = 0
 var sfx_volume: float = MAX_VOLUME setget set_sfx_volume
 
 var _sfx_bus
@@ -11,10 +13,12 @@ func _ready():
 	_sfx_bus = AudioServer.get_bus_index("Sfx")
 	_music_bus = AudioServer.get_bus_index("Music")
 
+
 func set_sfx_volume(value: float):
 	value = clamp(value, 0, MAX_VOLUME)
 	sfx_volume = value
 	_set_volume(_sfx_bus, value)
+
 
 func _set_volume(bus_idx: int, value: float):
 	AudioServer.set_bus_mute(bus_idx, sfx_volume == 0)

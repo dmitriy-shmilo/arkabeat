@@ -8,6 +8,7 @@ const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
 
 signal score_changed(new_score)
+signal lives_changed(new_lives)
 signal resource_lost(resource)
 signal resource_gained(resource)
 
@@ -21,6 +22,8 @@ onready var _audio: AudioStreamPlayer = $Audio
 onready var _settings = $CanvasLayer/GUI/Settings
 
 var _score: int = 0
+var _lives: int = 3
+
 var _resources: Dictionary = {
 	Organ.RESOURCE_TYPE.OXYGEN : 0,
 	Organ.RESOURCE_TYPE.NUTRITION : 0,
@@ -30,6 +33,7 @@ var _resources: Dictionary = {
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	emit_signal("lives_changed", _lives)
 
 
 func _input(event):
@@ -52,8 +56,21 @@ func _input(event):
 func _on_Projectile_collided(other):
 	_projectile.speed_up(SPEEDUP_AMOUNT)
 	if other == _floor:
+		_lives -= 1
+		emit_signal("lives_changed", _lives)
 		_audio.stream = LooseStream
 		_audio.play()
+
+		if _lives <= 0:
+			_projectile.queue_free()
+			yield(_audio, "finished")
+			PersistedSettings.last_score = _score
+			if _score > PersistedSettings.best_score:
+				PersistedSettings.best_score = _score
+
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			get_tree().change_scene("res://screens/title/title.tscn")
+
 	elif other.get_parent() is Organ:
 		var organ = (other.get_parent() as Organ)
 		organ.get_hit()
