@@ -12,9 +12,11 @@ const SCORE_PER_LIFE = 50
 const SPEEDUP_AMOUNT = 5.0
 const BAT_Y_ALLOWANCE = 50.0
 const PROJECTILE_OFFSET = 40.0
+
 const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
 const OneUpStream = preload("res://screens/main/one_up.wav")
+const WallHitStream = preload("res://screens/main/wall_hit.wav")
 
 signal score_changed(new_score)
 signal lives_changed(new_lives)
@@ -28,6 +30,7 @@ onready var _ceiling = $Ceiling
 onready var _left_wall = $LeftWall
 onready var _right_wall = $RightWall
 onready var _audio: AudioStreamPlayer = $Audio
+onready var _music: AudioStreamPlayer = $Music
 onready var _settings = $CanvasLayer/GUI/Settings
 
 var _score: int = 0 setget _set_score
@@ -44,6 +47,8 @@ var _resources: Dictionary = {
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	emit_signal("lives_changed", _lives)
+	_music.stream_paused = false
+	_music.play()
 
 
 func _unhandled_key_input(event: InputEventKey):
@@ -52,6 +57,7 @@ func _unhandled_key_input(event: InputEventKey):
 		_settings.visible = true
 		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		_music.stream_paused = true
 
 
 func _unhandled_input(event: InputEvent):
@@ -98,7 +104,13 @@ func _set_lives(new_lives):
 
 
 func _on_Projectile_collided(other):
-	if other == _floor:
+	if other == _left_wall \
+		or other == _right_wall \
+		or other == _ceiling:
+		if not _audio.playing:
+			_audio.stream = WallHitStream
+			_audio.play()
+	elif other == _floor:
 		_set_state(GAME_STATE.LAUNCHING)
 		_set_lives(_lives - 1)
 		if not _audio.playing:
@@ -145,3 +157,4 @@ func _on_Settings_back_pressed():
 	_settings.visible = false
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	_music.stream_paused = false

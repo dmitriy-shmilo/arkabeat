@@ -1,7 +1,8 @@
 extends Control
 
 onready var _quit_button = $VBoxContainer/QuitButton
-onready var _sfx_slider = $VBoxContainer/HBoxContainer/Sfxslider
+onready var _sfx_slider = $VBoxContainer/SfxContainer/SfxSlider
+onready var _music_slider = $VBoxContainer/MusicContainer/MusicSlider
 
 signal back_pressed
 
@@ -18,6 +19,7 @@ func _unhandled_key_input(event: InputEventKey):
 
 func _load_settings():
 	_sfx_slider.value = PersistedSettings.sfx_volume
+	_music_slider.value = PersistedSettings.music_volume
 
 
 func _on_BackButton_pressed():
@@ -33,7 +35,7 @@ func _on_Settings_visibility_changed():
 		_load_settings()
 
 
-func _on_Sfxslider_value_changed(value):
+func _on_SfxSlider_value_changed(value):
 	PersistedSettings.sfx_volume = value
 
 
@@ -43,3 +45,7 @@ func _on_FullscreenButton_pressed():
 
 func _on_ParticlesCheckbox_toggled(button_pressed):
 	PersistedSettings.enable_particles = button_pressed
+
+
+func _on_MusicSlider_value_changed(value):
+	PersistedSettings.music_volume = value

@@ -15,8 +15,10 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = -0.000438054
+anchor_top = 0.000657082
+anchor_right = 0.999562
+anchor_bottom = 1.00066
 color = Color( 0.2, 0.2, 0.2, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,49 +47,71 @@ custom_fonts/font = ExtResource( 3 )
 text = "SETTINGS"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SfxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 41.0
 margin_right = 200.0
 margin_bottom = 57.0
 
-[node name="SfxLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="SfxLabel" type="Label" parent="VBoxContainer/SfxContainer"]
 margin_top = 1.0
-margin_right = 24.0
+margin_right = 46.0
 margin_bottom = 14.0
-text = "SFX:"
+size_flags_horizontal = 3
+text = "sfx:"
 
-[node name="Sfxslider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
-margin_left = 28.0
+[node name="SfxSlider" type="HSlider" parent="VBoxContainer/SfxContainer"]
+margin_left = 50.0
 margin_right = 200.0
 margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+
+[node name="MusicContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 200.0
+margin_bottom = 88.0
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/MusicContainer"]
+margin_top = 1.0
+margin_right = 46.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "music:"
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/MusicContainer"]
+margin_left = 50.0
+margin_right = 200.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
 
 [node name="ParticlesCheckbox" type="CheckBox" parent="VBoxContainer"]
-margin_top = 72.0
+margin_top = 103.0
 margin_right = 200.0
-margin_bottom = 96.0
+margin_bottom = 127.0
 pressed = true
 text = "enable particles"
 
 [node name="FullscreenButton" type="Button" parent="VBoxContainer"]
-margin_top = 111.0
+margin_top = 142.0
 margin_right = 200.0
-margin_bottom = 130.0
+margin_bottom = 161.0
 text = "toggle fullscreen"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
-margin_top = 145.0
+margin_top = 176.0
 margin_right = 200.0
-margin_bottom = 164.0
+margin_bottom = 195.0
 text = "back"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 179.0
+margin_top = 210.0
 margin_right = 200.0
-margin_bottom = 198.0
+margin_bottom = 229.0
 text = "quit"
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/Sfxslider" to="." method="_on_Sfxslider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/SfxContainer/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MusicContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/ParticlesCheckbox" to="." method="_on_ParticlesCheckbox_toggled"]
 [connection signal="pressed" from="VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

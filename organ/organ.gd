@@ -22,7 +22,8 @@ enum RESOURCE_TYPE {
 
 const HitSounds = [ 
 		preload("res://organ/hit1.wav"),
-		preload("res://organ/hit2.wav")
+		preload("res://organ/hit2.wav"),
+		preload("res://organ/hit3.wav"),
 ]
 
 export (ORGAN_TYPE) var organ_type = ORGAN_TYPE.NONE

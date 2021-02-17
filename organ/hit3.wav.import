@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hit3.wav-3ad6d173ea7e5e9bceb8311117a48fc0.sample"
+
+[deps]
+
+source_file="res://organ/hit3.wav"
+dest_files=[ "res://.import/hit3.wav-3ad6d173ea7e5e9bceb8311117a48fc0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
