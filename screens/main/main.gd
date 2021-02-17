@@ -45,7 +45,7 @@ var _resources: Dictionary = {
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	emit_signal("lives_changed", _lives)
 	_music.stream_paused = false
 	_music.play()
@@ -68,7 +68,7 @@ func _unhandled_input(event: InputEvent):
 		position.y = clamp(_bat.position.y + event.relative.y, \
 			get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
 			get_viewport_rect().size.y)
-		position.x = clamp(position.x, \
+		position.x = clamp(_bat.position.x + event.relative.x, \
 			0, get_viewport_rect().size.x)
 		_bat.position = position
 
