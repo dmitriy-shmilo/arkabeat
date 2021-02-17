@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://screens/title/title.gd" type="Script" id=2]
 [ext_resource path="res://screens/settings/settings.tscn" type="PackedScene" id=3]
+[ext_resource path="res://title_font.tres" type="DynamicFont" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -36,37 +37,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
 margin_right = 200.0
-margin_bottom = 13.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
+custom_fonts/font = ExtResource( 4 )
 text = "ARKABEAT"
 align = 1
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer"]
-margin_top = 23.0
+margin_top = 36.0
 margin_right = 200.0
-margin_bottom = 42.0
+margin_bottom = 55.0
 text = "new game"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
-margin_top = 52.0
+margin_top = 65.0
 margin_right = 200.0
-margin_bottom = 71.0
+margin_bottom = 84.0
 text = "settings"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
-margin_top = 81.0
+margin_top = 94.0
 margin_right = 200.0
-margin_bottom = 100.0
+margin_bottom = 113.0
 disabled = true
 text = "credits"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 110.0
+margin_top = 123.0
 margin_right = 200.0
-margin_bottom = 129.0
+margin_bottom = 142.0
 text = "quit"
 
 [node name="Settings" parent="." instance=ExtResource( 3 )]

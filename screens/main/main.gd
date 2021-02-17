@@ -69,7 +69,7 @@ func _on_Projectile_collided(other):
 				PersistedSettings.best_score = _score
 
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			get_tree().change_scene("res://screens/title/title.tscn")
+			get_tree().change_scene("res://screens/game_over/game_over.tscn")
 
 	elif other.get_parent() is Organ:
 		var organ = (other.get_parent() as Organ)
