@@ -87,6 +87,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
+bus = "Sfx"
 
 [node name="BeatSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )

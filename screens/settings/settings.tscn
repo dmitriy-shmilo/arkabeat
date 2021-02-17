@@ -54,7 +54,7 @@ margin_right = 24.0
 margin_bottom = 14.0
 text = "SFX:"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+[node name="Sfxslider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
 margin_left = 28.0
 margin_right = 200.0
 margin_bottom = 16.0
@@ -71,5 +71,7 @@ margin_top = 93.0
 margin_right = 200.0
 margin_bottom = 112.0
 text = "quit"
+[connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/Sfxslider" to="." method="_on_Sfxslider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

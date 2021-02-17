@@ -36,6 +36,10 @@ config/name="Arkabeat"
 run/main_scene="res://screens/title/title.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PersistedSettings="*res://persisted_settings.gd"
+
 [display]
 
 window/size/width=480
