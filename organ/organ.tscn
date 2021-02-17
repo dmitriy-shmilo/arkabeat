@@ -153,5 +153,6 @@ anims/Normal = SubResource( 3 )
 visible = false
 position = Vector2( 12.4017, -18.7491 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
