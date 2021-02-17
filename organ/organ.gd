@@ -102,11 +102,11 @@ func _show_provided_resource():
 func _show_consumed_resource():
 	_consumed_resource_sprite.visible = true
 	_consumed_resource_tween.interpolate_property(_consumed_resource_sprite, \
-	 	"scale", Vector2(1.0, 1.0), Vector2(1.3, 1.3), 0.2, \
+	 	"scale", Vector2(1.0, 1.0), Vector2(1.1, 1.1), 0.1, \
 		Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	_consumed_resource_tween.interpolate_property(_consumed_resource_sprite, \
-	 	"scale", Vector2(1.3, 1.3), Vector2(0.0, 0.0), 0.2, \
-		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0.2)
+	 	"scale", Vector2(1.1, 1.1), Vector2(0.0, 0.0), 0.1, \
+		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0.1)
 	_consumed_resource_tween.start()
 	yield(_consumed_resource_tween, "tween_all_completed")
 	_consumed_resource_sprite.visible = false
