@@ -119,6 +119,8 @@ position = Vector2( 240, 300 )
 [node name="GUI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 0.0869064
+margin_bottom = 0.0869141
 mouse_filter = 2
 theme = ExtResource( 6 )
 script = ExtResource( 7 )
@@ -149,11 +151,13 @@ __meta__ = {
 }
 
 [node name="X" type="Label" parent="CanvasLayer/GUI/LivesContainer"]
+anchor_left = -0.00367201
+anchor_right = -0.00367201
 margin_left = 21.0
 margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 14.0
-custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
+custom_colors/font_color = Color( 0.372549, 0.0431373, 0.0235294, 1 )
 text = "x"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,7 +168,7 @@ margin_left = 31.0
 margin_top = 1.0
 margin_right = 37.0
 margin_bottom = 14.0
-custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
+custom_colors/font_color = Color( 0.372549, 0.0431373, 0.0235294, 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -181,12 +185,12 @@ texture = SubResource( 4 )
 [node name="Score" type="Label" parent="CanvasLayer/GUI"]
 anchor_top = -0.00648174
 anchor_bottom = -0.00648174
-margin_left = 22.0
+margin_left = 27.0
 margin_top = 7.07416
-margin_right = 107.0
+margin_right = 112.0
 margin_bottom = 21.0742
 rect_scale = Vector2( 2, 2 )
-custom_colors/font_color = Color( 0.14902, 0.0117647, 0.00392157, 1 )
+custom_colors/font_color = Color( 0.372549, 0.0431373, 0.0235294, 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -260,8 +264,8 @@ bus = "Music"
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
 [connection signal="resource_lost" from="." to="CanvasLayer/GUI" method="_on_Main_resource_lost"]
 [connection signal="score_changed" from="." to="CanvasLayer/GUI" method="_on_Main_score_changed"]
-[connection signal="collided" from="Projectile" to="." method="_on_Projectile_collided"]
 [connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
+[connection signal="collided" from="Projectile" to="." method="_on_Projectile_collided"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_back_pressed"]
 
 [editable path="CanvasLayer/GUI/Settings"]

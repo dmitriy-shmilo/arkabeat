@@ -30,27 +30,27 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -99.0
+margin_top = -132.5
 margin_right = 100.0
-margin_bottom = 99.0
+margin_bottom = 132.5
 rect_min_size = Vector2( 200, 100 )
-custom_constants/separation = 15
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="VBoxContainer"]
+margin_top = 16.0
 margin_right = 200.0
-margin_bottom = 26.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 3 )
 text = "SETTINGS"
 align = 1
 
 [node name="SfxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 41.0
+margin_top = 46.0
 margin_right = 200.0
-margin_bottom = 57.0
+margin_bottom = 62.0
 
 [node name="SfxLabel" type="Label" parent="VBoxContainer/SfxContainer"]
 margin_top = 1.0
@@ -67,9 +67,9 @@ rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
 
 [node name="MusicContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 72.0
+margin_top = 66.0
 margin_right = 200.0
-margin_bottom = 88.0
+margin_bottom = 82.0
 
 [node name="MusicLabel" type="Label" parent="VBoxContainer/MusicContainer"]
 margin_top = 1.0
@@ -86,28 +86,28 @@ rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
 
 [node name="ParticlesCheckbox" type="CheckBox" parent="VBoxContainer"]
-margin_top = 103.0
+margin_top = 86.0
 margin_right = 200.0
-margin_bottom = 127.0
+margin_bottom = 102.0
 pressed = true
 text = "enable particles"
 
 [node name="FullscreenButton" type="Button" parent="VBoxContainer"]
-margin_top = 142.0
+margin_top = 106.0
 margin_right = 200.0
-margin_bottom = 161.0
+margin_bottom = 151.0
 text = "toggle fullscreen"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
-margin_top = 176.0
+margin_top = 155.0
 margin_right = 200.0
-margin_bottom = 195.0
+margin_bottom = 200.0
 text = "back"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 210.0
+margin_top = 204.0
 margin_right = 200.0
-margin_bottom = 229.0
+margin_bottom = 249.0
 text = "quit"
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="value_changed" from="VBoxContainer/SfxContainer/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
