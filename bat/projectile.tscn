@@ -25,6 +25,8 @@ radius = 2.41501
 
 [node name="Projectile" type="KinematicBody2D"]
 position = Vector2( 165.305, 122.035 )
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="TrailParticles" type="Particles2D" parent="."]

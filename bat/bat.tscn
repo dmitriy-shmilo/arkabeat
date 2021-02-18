@@ -61,6 +61,7 @@ tracks/0/keys = {
 
 [node name="Bat" type="KinematicBody2D"]
 position = Vector2( 163.983, 199.9 )
+collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="Collider" type="CollisionPolygon2D" parent="."]

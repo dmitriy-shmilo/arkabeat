@@ -3,11 +3,13 @@ extends Control
 onready var _sfx_slider = $VBoxContainer/SfxContainer/SfxSlider
 onready var _music_slider = $VBoxContainer/MusicContainer/MusicSlider
 onready var _enable_particles_checkbox = $VBoxContainer/ParticlesCheckbox
+onready var _fullscreen_button = $VBoxContainer/FullscreenButton
 
 signal back_pressed
 signal quit_pressed
 
 func _ready():
+	_fullscreen_button.visible = not OS.has_feature("HTML5")
 	_load_settings()
 
 

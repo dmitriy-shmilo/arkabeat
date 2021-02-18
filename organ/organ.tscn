@@ -131,6 +131,8 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 1 )
@@ -161,7 +163,6 @@ anims/Normal = SubResource( 3 )
 visible = false
 position = Vector2( 12.4017, -18.7491 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]

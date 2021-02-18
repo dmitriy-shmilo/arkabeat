@@ -46,8 +46,6 @@ margin_bottom = 51.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-anchor_top = 0.117647
-anchor_bottom = 0.117647
 margin_left = 26.0
 margin_top = 9.0
 margin_right = 58.0
@@ -63,8 +61,6 @@ custom_fonts/font = ExtResource( 4 )
 text = "CREDITS"
 
 [node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-anchor_top = 0.117647
-anchor_bottom = 0.117647
 margin_left = 234.0
 margin_top = 9.0
 margin_right = 266.0

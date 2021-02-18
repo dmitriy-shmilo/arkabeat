@@ -36,6 +36,7 @@ onready var _settings = $CanvasLayer/GUI/Settings
 var _score: int = 0 setget _set_score
 var _lives: int = 3 setget _set_lives
 var _state = GAME_STATE.LAUNCHING
+var _mouse_captured = false
 
 var _resources: Dictionary = {
 	Organ.RESOURCE_TYPE.OXYGEN : 0,
@@ -46,7 +47,7 @@ var _resources: Dictionary = {
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	_try_capture_mouse()
 	emit_signal("lives_changed", _lives)
 	_music.stream_paused = false
 	_music.play()
@@ -57,7 +58,7 @@ func _unhandled_key_input(event: InputEventKey):
 		get_tree().set_input_as_handled()
 		_settings.visible = true
 		get_tree().paused = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		_release_mouse()
 
 
 func _unhandled_input(event: InputEvent):
@@ -65,10 +66,13 @@ func _unhandled_input(event: InputEvent):
 		_set_state(GAME_STATE.PLAYING)
 	elif event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
-		position.y = clamp(_bat.position.y + event.relative.y, \
+		if _mouse_captured:
+			position = _bat.position + event.relative
+
+		position.y = clamp(position.y, \
 			get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
 			get_viewport_rect().size.y)
-		position.x = clamp(_bat.position.x + event.relative.x, \
+		position.x = clamp(position.x, \
 			0, get_viewport_rect().size.x)
 		_bat.desired_position = position
 
@@ -103,6 +107,20 @@ func _set_lives(new_lives):
 	emit_signal("lives_changed", _lives)
 
 
+func _try_capture_mouse():
+	if OS.has_feature("HTML5"):
+		return
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	_mouse_captured = true
+
+
+func _release_mouse():
+	if OS.has_feature("HTML5"):
+		return
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_mouse_captured = false
+
+
 func _on_Projectile_collided(other):
 	if other == _left_wall \
 		or other == _right_wall \
@@ -128,7 +146,7 @@ func _on_Projectile_collided(other):
 			if _score > PersistedSettings.best_score:
 				PersistedSettings.best_score = _score
 
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			_release_mouse()
 			get_tree().change_scene("res://screens/game_over/game_over.tscn")
 	elif other is Bat:
 		_projectile.speed_up(SPEEDUP_AMOUNT)
@@ -161,7 +179,7 @@ func _on_Projectile_collided(other):
 func _on_Settings_back_pressed():
 	_settings.visible = false
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	_try_capture_mouse()
 
 
 func _on_Settings_quit_pressed():

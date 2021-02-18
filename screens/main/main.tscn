@@ -99,30 +99,39 @@ position = Vector2( 240, 260 )
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 position = Vector2( -5, 160 )
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource( 1 )
 
 [node name="RightWall" type="StaticBody2D" parent="."]
 position = Vector2( 485, 160 )
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource( 1 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 240, 325 )
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource( 2 )
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
 position = Vector2( 240, -5 )
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 shape = SubResource( 2 )
 
 [node name="Bat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 240, 300 )
+collision_mask = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

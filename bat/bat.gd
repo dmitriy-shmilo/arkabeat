@@ -3,6 +3,8 @@ extends KinematicBody2D
 
 const Beat1 = preload("res://bat/beat1.wav")
 const Beat2 = preload("res://bat/beat2.wav")
+const SPEED = 640.0
+const PROXIMITY_THRESHOLD = 5.0
 
 onready var _sprite: Sprite = $Sprite
 onready var _audio: AudioStreamPlayer = $Audio
@@ -20,9 +22,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	_velocity = (desired_position - global_position).normalized() * 640
-	if (desired_position - global_position).length() < 10:
-		global_position = desired_position
+	_velocity = (desired_position - position).normalized() * SPEED
+	if (desired_position - position).length() <= PROXIMITY_THRESHOLD:
+		position = desired_position
 	else:
 		move_and_collide(_velocity * delta)
 
