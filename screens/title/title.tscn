@@ -4,7 +4,7 @@
 [ext_resource path="res://screens/title/title.gd" type="Script" id=2]
 [ext_resource path="res://screens/settings/settings.tscn" type="PackedScene" id=3]
 [ext_resource path="res://title_font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://screens/main/background.png" type="Texture" id=5]
+[ext_resource path="res://background.tscn" type="PackedScene" id=5]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -15,10 +15,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 480.0
-margin_bottom = 320.0
-texture = ExtResource( 5 )
+[node name="Background" parent="." instance=ExtResource( 5 )]
+position = Vector2( 240, 160 )
+allow_particles = false
+
+[node name="CloseMidParticles" parent="Background" index="1"]
+visible = false
+
+[node name="MidParticles" parent="Background" index="3"]
+visible = false
+
+[node name="Particles" parent="Background" index="6"]
+visible = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -78,7 +86,32 @@ text = "quit"
 visible = false
 
 [node name="ColorRect" parent="Settings" index="0"]
+visible = false
 color = Color( 0.635294, 0.423529, 0.423529, 1 )
+
+[node name="Title" parent="Settings/VBoxContainer" index="0"]
+margin_top = 43.0
+margin_bottom = 69.0
+
+[node name="SfxContainer" parent="Settings/VBoxContainer" index="1"]
+margin_top = 73.0
+margin_bottom = 86.0
+
+[node name="MusicContainer" parent="Settings/VBoxContainer" index="2"]
+margin_top = 90.0
+margin_bottom = 103.0
+
+[node name="ParticlesCheckbox" parent="Settings/VBoxContainer" index="3"]
+margin_top = 107.0
+margin_bottom = 123.0
+
+[node name="FullscreenButton" parent="Settings/VBoxContainer" index="4"]
+margin_top = 127.0
+margin_bottom = 172.0
+
+[node name="BackButton" parent="Settings/VBoxContainer" index="5"]
+margin_top = 176.0
+margin_bottom = 221.0
 
 [node name="QuitButton" parent="Settings/VBoxContainer" index="6"]
 visible = false
@@ -86,5 +119,7 @@ visible = false
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="back_pressed" from="Settings" to="." method="_on_Settings_back_pressed"]
+
+[editable path="Background"]
 
 [editable path="Settings"]

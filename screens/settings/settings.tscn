@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://screens/settings/settings.gd" type="Script" id=2]
 [ext_resource path="res://title_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://background.tscn" type="PackedScene" id=4]
 
 [node name="Settings" type="Control"]
 pause_mode = 2
@@ -24,6 +25,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Background" parent="." instance=ExtResource( 4 )]
+position = Vector2( 240, 160 )
+allow_particles = false
+
+[node name="CloseMidParticles" parent="Background" index="1"]
+visible = false
+
+[node name="MidParticles" parent="Background" index="3"]
+visible = false
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,74 +51,72 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_top = 16.0
+margin_top = 19.0
 margin_right = 200.0
-margin_bottom = 42.0
+margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
 text = "SETTINGS"
 align = 1
 
 [node name="SfxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 46.0
+margin_top = 49.0
 margin_right = 200.0
 margin_bottom = 62.0
 
 [node name="SfxLabel" type="Label" parent="VBoxContainer/SfxContainer"]
-margin_top = 1.0
 margin_right = 46.0
-margin_bottom = 14.0
+margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "sfx:"
 
 [node name="SfxSlider" type="HSlider" parent="VBoxContainer/SfxContainer"]
 margin_left = 50.0
 margin_right = 200.0
-margin_bottom = 16.0
+margin_bottom = 9.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
 
 [node name="MusicContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 66.0
 margin_right = 200.0
-margin_bottom = 82.0
+margin_bottom = 79.0
 
 [node name="MusicLabel" type="Label" parent="VBoxContainer/MusicContainer"]
-margin_top = 1.0
 margin_right = 46.0
-margin_bottom = 14.0
+margin_bottom = 13.0
 size_flags_horizontal = 3
 text = "music:"
 
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer/MusicContainer"]
 margin_left = 50.0
 margin_right = 200.0
-margin_bottom = 16.0
+margin_bottom = 9.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
 
 [node name="ParticlesCheckbox" type="CheckBox" parent="VBoxContainer"]
-margin_top = 86.0
+margin_top = 83.0
 margin_right = 200.0
-margin_bottom = 102.0
+margin_bottom = 99.0
 pressed = true
 text = "enable particles"
 
 [node name="FullscreenButton" type="Button" parent="VBoxContainer"]
-margin_top = 106.0
+margin_top = 103.0
 margin_right = 200.0
-margin_bottom = 151.0
+margin_bottom = 148.0
 text = "toggle fullscreen"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
-margin_top = 155.0
+margin_top = 152.0
 margin_right = 200.0
-margin_bottom = 200.0
+margin_bottom = 197.0
 text = "back"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 204.0
+margin_top = 201.0
 margin_right = 200.0
-margin_bottom = 249.0
+margin_bottom = 246.0
 text = "quit"
 [connection signal="visibility_changed" from="." to="." method="_on_Settings_visibility_changed"]
 [connection signal="value_changed" from="VBoxContainer/SfxContainer/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
@@ -116,3 +125,5 @@ text = "quit"
 [connection signal="pressed" from="VBoxContainer/FullscreenButton" to="." method="_on_FullscreenButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[editable path="Background"]
