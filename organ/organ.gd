@@ -18,6 +18,7 @@ enum RESOURCE_TYPE {
 	OXYGEN,
 	NUTRITION,
 	ENERGY,
+	SLOW_DOWN, # not technically a resource, whatever
 }
 
 const HitSounds = [ 
@@ -29,6 +30,8 @@ const HitSounds = [
 export (ORGAN_TYPE) var organ_type = ORGAN_TYPE.NONE
 export (RESOURCE_TYPE) var provided_resource = RESOURCE_TYPE.NONE
 export (RESOURCE_TYPE) var consumed_resource = RESOURCE_TYPE.NONE
+export (float) var speed_mod = 5.0
+export (int) var score_mod = 1
 
 onready var _sprite: Sprite = $Sprite
 onready var _resource_tween: Tween = $ResourceTween
@@ -140,4 +143,6 @@ func _get_resource_frame(resource):
 			return 1
 		RESOURCE_TYPE.NUTRITION:
 			return 2
+		RESOURCE_TYPE.SLOW_DOWN:
+			return 3
 	return -1

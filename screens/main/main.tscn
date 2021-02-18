@@ -47,42 +47,50 @@ position = Vector2( 240, 160 )
 
 [node name="Organs" type="Node2D" parent="."]
 
-[node name="Organ" parent="Organs" instance=ExtResource( 5 )]
+[node name="Stomach" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 217.066, 99.385 )
 organ_type = 7
 provided_resource = 2
 consumed_resource = 1
+speed_mod = 1.0
+score_mod = 2
 
-[node name="Organ5" parent="Organs" instance=ExtResource( 5 )]
+[node name="Liver" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 187.769, 184.424 )
 organ_type = 6
 provided_resource = 3
 consumed_resource = 2
+speed_mod = 1.0
 
-[node name="Organ6" parent="Organs" instance=ExtResource( 5 )]
+[node name="LeftKidney" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 147.323, 129.201 )
 organ_type = 3
+provided_resource = 4
 consumed_resource = 1
+speed_mod = -5.0
 
-[node name="Organ7" parent="Organs" instance=ExtResource( 5 )]
+[node name="RightKidney" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 293.809, 136.719 )
 organ_type = 4
+provided_resource = 4
 consumed_resource = 1
+speed_mod = -5.0
 
-[node name="Organ3" parent="Organs" instance=ExtResource( 5 )]
+[node name="RightLung" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 273.906, 58.9973 )
 organ_type = 2
 provided_resource = 1
 
-[node name="Organ4" parent="Organs" instance=ExtResource( 5 )]
+[node name="LeftLung" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 143.931, 64.4602 )
 organ_type = 1
 provided_resource = 1
 
-[node name="Organ2" parent="Organs" instance=ExtResource( 5 )]
+[node name="Brain" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 214.246, 25.3625 )
 organ_type = 5
 consumed_resource = 3
+score_mod = 10
 
 [node name="Projectile" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 260 )

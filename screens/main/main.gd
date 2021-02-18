@@ -8,8 +8,8 @@ enum GAME_STATE {
 
 const Organ = preload("res://organ/organ.gd")
 
-const SCORE_PER_LIFE = 50
-const SPEEDUP_AMOUNT = 5.0
+const SCORE_PER_LIFE = 100
+const SPEEDUP_AMOUNT = 10.0
 const BAT_Y_ALLOWANCE = 50.0
 const PROJECTILE_OFFSET = 40.0
 
@@ -41,6 +41,7 @@ var _resources: Dictionary = {
 	Organ.RESOURCE_TYPE.OXYGEN : 0,
 	Organ.RESOURCE_TYPE.NUTRITION : 0,
 	Organ.RESOURCE_TYPE.ENERGY : 0,
+	Organ.RESOURCE_TYPE.SLOW_DOWN : 0,
 }
 
 
@@ -113,6 +114,8 @@ func _on_Projectile_collided(other):
 		_set_state(GAME_STATE.LAUNCHING)
 		_set_lives(_lives - 1)
 		$ShakingCamera.shake()
+		_projectile.speed = Projectile.INITIAL_SPEED
+
 		if not _audio.playing:
 			_audio.stream = LooseStream
 			_audio.play()
@@ -127,14 +130,18 @@ func _on_Projectile_collided(other):
 
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().change_scene("res://screens/game_over/game_over.tscn")
+	elif other is Bat:
+		_projectile.speed_up(SPEEDUP_AMOUNT)
 	elif other.get_parent() is Organ:
 		var organ = (other.get_parent() as Organ)
 		organ.get_hit()
 		
+		_projectile.speed_up(organ.speed_mod)
+		
 		if organ.consumed_resource != Organ.RESOURCE_TYPE.NONE \
 			and _resources[organ.consumed_resource] > 0:
 			organ.consume_if_needed(organ.consumed_resource)
-			_set_score(_score + 1)
+			_set_score(_score + organ.score_mod)
 			_resources[organ.consumed_resource] = 0
 			emit_signal("resource_lost", organ.consumed_resource)
 		
@@ -146,11 +153,9 @@ func _on_Projectile_collided(other):
 		if _resources[res] > 0:
 			return
 
-		_set_score(_score +  1)
+		_set_score(_score +  organ.score_mod)
 		_resources[res] = 1
 		emit_signal("resource_gained", res)
-	elif other.get_parent() is Bat:
-		_projectile.speed_up(SPEEDUP_AMOUNT)
 
 
 func _on_Settings_back_pressed():

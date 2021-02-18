@@ -13,11 +13,15 @@ func _on_Main_score_changed(new_score):
 
 
 func _on_Main_resource_gained(resource):
-	_get_indicator(resource).modulate.a = 1.0
+	var indicator = _get_indicator(resource)
+	if indicator != null:
+		indicator.modulate.a = 1.0
 
 
 func _on_Main_resource_lost(resource):
-	_get_indicator(resource).modulate.a = 0.5
+	var indicator = _get_indicator(resource)
+	if indicator != null:
+		indicator.modulate.a = 0.5
 
 
 func _get_indicator(resource):
@@ -28,6 +32,7 @@ func _get_indicator(resource):
 			return _energy_indicator
 		Organ.RESOURCE_TYPE.NUTRITION:
 			return _nutrition_indicator
+	return null
 
 
 func _on_Main_lives_changed(new_lives):
