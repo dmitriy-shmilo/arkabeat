@@ -1,6 +1,6 @@
 # ARKABEAT #
 
-![title image]("/img/title.png")
+![title image](img/title.png)
 
 A [Godot Wild Jam #30](https://itch.io/jam/godot-wild-jam-30) entry.
 
@@ -16,6 +16,6 @@ music ["Casual Classic Loop (8-Bit) 2"](https://opengameart.org/content/casual-c
 
 # Screenshots #
 
-![screenshot]("/img/screen1.png")
-![screenshot]("/img/screen2.png")
-![screenshot]("/img/screen3.png")
+![screenshot](img/screen1.png)
+![screenshot](img/screen2.png)
+![screenshot](img/screen3.png)
