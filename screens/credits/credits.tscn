@@ -37,11 +37,11 @@ size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "art, ui, programming by [url=https://dmitriy-shmilo.itch.io/]Dmitriy Shmilo[/url]
 
-art by [url=\"https://www.artstation.com/i_bahachuk\"]Irene Bagachuk [/url]
+art by [url=https://www.artstation.com/i_bahachuk]Irene Bagachuk [/url]
 
-font [url=\"https://datagoblin.itch.io/monogram\"]monogram [/url] by Vinícius Menézio
+font [url=https://datagoblin.itch.io/monogram]monogram [/url] by Vinícius Menézio
 
-music [url=\"https://opengameart.org/content/casual-classic-loop-8-bit-2\"]\"Casual Classic Loop (8-Bit) 2\"[/url] by Kat
+music [url=https://opengameart.org/content/casual-classic-loop-8-bit-2]\"Casual Classic Loop (8-Bit) 2\"[/url] by Kat
 
 [center]Thank you for playing![/center]"
 text = "art, ui, programming by Dmitriy Shmilo
@@ -62,5 +62,4 @@ margin_bottom = 197.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
 text = "back"
-[connection signal="meta_clicked" from="VBoxContainer/CreditsLabel" to="." method="_on_CreditsLabel_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

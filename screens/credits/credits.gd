@@ -13,5 +13,4 @@ func _on_BackButton_pressed():
 
 
 func _on_CreditsLabel_meta_clicked(meta):
-	print(meta)
 	OS.shell_open(meta)
