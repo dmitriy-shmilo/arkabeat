@@ -36,3 +36,7 @@ func _on_QuitButton_pressed():
 
 func _on_CreditsButton_pressed():
 	get_tree().change_scene("res://screens/credits/credits.tscn")
+
+
+func _on_HowToPlay_pressed():
+	get_tree().change_scene("res://screens/tutorial/tutorial.tscn")
