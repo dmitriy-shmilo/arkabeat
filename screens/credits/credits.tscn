@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://screens/credits/credits.gd" type="Script" id=2]
+[ext_resource path="res://background.tscn" type="PackedScene" id=3]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, 160 )
+allow_particles = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -146.0
+margin_top = -98.5
+margin_right = 146.0
+margin_bottom = 98.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 292.0
+margin_bottom = 148.0
+size_flags_vertical = 3
+bbcode_enabled = true
+bbcode_text = "art, ui, programming by [url=https://dmitriy-shmilo.itch.io/]Dmitriy Shmilo[/url]
+
+art by [url=\"https://www.artstation.com/i_bahachuk\"]Irene Bagachuk [/url]
+
+font [url=\"https://datagoblin.itch.io/monogram\"]monogram [/url] by Vinícius Menézio
+
+music [url=\"https://opengameart.org/content/casual-classic-loop-8-bit-2\"]\"Casual Classic Loop (8-Bit) 2\"[/url] by Kat
+
+[center]Thank you for playing![/center]"
+text = "art, ui, programming by Dmitriy Shmilo
+
+art by Irene Bagachuk 
+
+font monogram  by Vinícius Menézio
+
+music \"Casual Classic Loop (8-Bit) 2\" by Kat
+
+Thank you for playing!"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+margin_left = 96.0
+margin_top = 152.0
+margin_right = 196.0
+margin_bottom = 197.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 4
+text = "back"
+[connection signal="meta_clicked" from="VBoxContainer/CreditsLabel" to="." method="_on_CreditsLabel_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
