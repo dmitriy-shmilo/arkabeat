@@ -21,7 +21,7 @@ func _update_particle_visibility():
 	if not is_inside_tree():
 		return
 	_static_particles.visible = not PersistedSettings.enable_particles \
-		and not allow_particles
+		and allow_particles
 	for p in _particle_emitters:
 		p.visible = PersistedSettings.enable_particles \
 			and allow_particles \

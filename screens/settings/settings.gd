@@ -6,9 +6,9 @@ onready var _music_slider = $VBoxContainer/MusicContainer/MusicSlider
 onready var _enable_particles_checkbox = $VBoxContainer/ParticlesCheckbox
 
 signal back_pressed
+signal quit_pressed
 
 func _ready():
-	_quit_button.visible = _quit_button.visible and not OS.has_feature("HTML5")
 	_load_settings()
 
 
@@ -29,7 +29,7 @@ func _on_BackButton_pressed():
 
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	emit_signal("quit_pressed")
 
 
 func _on_Settings_visibility_changed():

@@ -89,31 +89,7 @@ visible = false
 visible = false
 color = Color( 0.635294, 0.423529, 0.423529, 1 )
 
-[node name="Title" parent="Settings/VBoxContainer" index="0"]
-margin_top = 43.0
-margin_bottom = 69.0
-
-[node name="SfxContainer" parent="Settings/VBoxContainer" index="1"]
-margin_top = 73.0
-margin_bottom = 86.0
-
-[node name="MusicContainer" parent="Settings/VBoxContainer" index="2"]
-margin_top = 90.0
-margin_bottom = 103.0
-
-[node name="ParticlesCheckbox" parent="Settings/VBoxContainer" index="3"]
-margin_top = 107.0
-margin_bottom = 123.0
-
-[node name="FullscreenButton" parent="Settings/VBoxContainer" index="4"]
-margin_top = 127.0
-margin_bottom = 172.0
-
-[node name="BackButton" parent="Settings/VBoxContainer" index="5"]
-margin_top = 176.0
-margin_bottom = 221.0
-
-[node name="QuitButton" parent="Settings/VBoxContainer" index="6"]
+[node name="QuitButton" parent="Settings/VBoxContainer/HBoxContainer" index="0"]
 visible = false
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

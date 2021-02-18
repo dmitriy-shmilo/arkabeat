@@ -246,13 +246,14 @@ visible = false
 [node name="ColorRect" parent="CanvasLayer/GUI/Settings" index="0"]
 color = Color( 0.2, 0.2, 0.2, 0.764706 )
 
-[node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer" index="5"]
+[node name="BackButton" parent="CanvasLayer/GUI/Settings/VBoxContainer/HBoxContainer" index="1"]
 text = "resume"
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 bus = "Sfx"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 11 )
 autoplay = true
 stream_paused = true
@@ -265,5 +266,6 @@ bus = "Music"
 [connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_back_pressed"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="Background" method="_on_Settings_back_pressed"]
+[connection signal="quit_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_quit_pressed"]
 
 [editable path="CanvasLayer/GUI/Settings"]

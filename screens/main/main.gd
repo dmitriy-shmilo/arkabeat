@@ -57,7 +57,6 @@ func _unhandled_key_input(event: InputEventKey):
 		_settings.visible = true
 		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		_music.stream_paused = true
 
 
 func _unhandled_input(event: InputEvent):
@@ -156,5 +155,10 @@ func _on_Projectile_collided(other):
 func _on_Settings_back_pressed():
 	_settings.visible = false
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	_music.stream_paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _on_Settings_quit_pressed():
+	_settings.visible = false
+	get_tree().paused = false
+	get_tree().change_scene("res://screens/title/title.tscn")
