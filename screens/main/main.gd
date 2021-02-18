@@ -112,6 +112,7 @@ func _on_Projectile_collided(other):
 	elif other == _floor:
 		_set_state(GAME_STATE.LAUNCHING)
 		_set_lives(_lives - 1)
+		$ShakingCamera.shake()
 		if not _audio.playing:
 			_audio.stream = LooseStream
 			_audio.play()

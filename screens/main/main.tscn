@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://screens/main/main.gd" type="Script" id=1]
 [ext_resource path="res://bat/projectile.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://screens/settings/settings.tscn" type="PackedScene" id=9]
 [ext_resource path="res://organ/organs.png" type="Texture" id=10]
 [ext_resource path="res://screens/main/soundtrack.wav" type="AudioStream" id=11]
+[ext_resource path="res://camera/shaking_camera.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 170 )
@@ -258,6 +259,10 @@ stream = ExtResource( 11 )
 autoplay = true
 stream_paused = true
 bus = "Music"
+
+[node name="ShakingCamera" parent="." instance=ExtResource( 12 )]
+position = Vector2( 240, 160 )
+current = true
 [connection signal="lives_changed" from="." to="CanvasLayer/GUI" method="_on_Main_lives_changed"]
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
 [connection signal="resource_lost" from="." to="CanvasLayer/GUI" method="_on_Main_resource_lost"]
