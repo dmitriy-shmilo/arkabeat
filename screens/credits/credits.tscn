@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://screens/credits/credits.gd" type="Script" id=2]
 [ext_resource path="res://background.tscn" type="PackedScene" id=3]
+[ext_resource path="res://title_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://organ/organs.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 128, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 96, 32, 32 )
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
@@ -23,16 +33,49 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -146.0
-margin_top = -98.5
+margin_top = -121.5
 margin_right = 146.0
-margin_bottom = 98.5
+margin_bottom = 121.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CreditsLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 292.0
-margin_bottom = 148.0
+margin_bottom = 51.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+anchor_top = 0.117647
+anchor_bottom = 0.117647
+margin_left = 26.0
+margin_top = 9.0
+margin_right = 58.0
+margin_bottom = 41.0
+size_flags_vertical = 4
+texture = SubResource( 1 )
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 62.0
+margin_right = 230.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 4 )
+text = "CREDITS"
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+anchor_top = 0.117647
+anchor_bottom = 0.117647
+margin_left = 234.0
+margin_top = 9.0
+margin_right = 266.0
+margin_bottom = 41.0
+size_flags_vertical = 4
+texture = SubResource( 2 )
+
+[node name="CreditsLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 55.0
+margin_right = 292.0
+margin_bottom = 194.0
 size_flags_vertical = 3
 bbcode_enabled = true
 bbcode_text = "art, ui, programming by [url=https://dmitriy-shmilo.itch.io/]Dmitriy Shmilo[/url]
@@ -56,9 +99,9 @@ Thank you for playing!"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 margin_left = 96.0
-margin_top = 152.0
+margin_top = 198.0
 margin_right = 196.0
-margin_bottom = 197.0
+margin_bottom = 243.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
 text = "back"

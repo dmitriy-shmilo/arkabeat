@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://screens/title/title.gd" type="Script" id=2]
 [ext_resource path="res://screens/settings/settings.tscn" type="PackedScene" id=3]
 [ext_resource path="res://title_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://background.tscn" type="PackedScene" id=5]
+[ext_resource path="res://organ/organs.png" type="Texture" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -34,53 +39,76 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -125.5
+margin_top = -128.5
 margin_right = 100.0
-margin_bottom = 125.5
+margin_bottom = 128.5
 rect_min_size = Vector2( 200, 100 )
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleLabel" type="Label" parent="VBoxContainer"]
-margin_right = 200.0
-margin_bottom = 26.0
-size_flags_horizontal = 3
-size_flags_vertical = 6
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 232.0
+margin_bottom = 51.0
+alignment = 1
+
+[node name="TitleLabelLeft" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 96.0
+margin_bottom = 51.0
 custom_fonts/font = ExtResource( 4 )
-text = "ARKABEAT"
-align = 1
+text = "ARKA"
+
+[node name="HeartIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_top = 9.0
+margin_right = 132.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 16, 16 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource( 1 )
+
+[node name="TitleLabelRight" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 136.0
+margin_right = 232.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 4 )
+text = "BEAT"
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer"]
-margin_top = 26.0
-margin_right = 200.0
-margin_bottom = 71.0
+margin_top = 51.0
+margin_right = 232.0
+margin_bottom = 96.0
 text = "new game"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
-margin_top = 71.0
-margin_right = 200.0
-margin_bottom = 116.0
+margin_top = 96.0
+margin_right = 232.0
+margin_bottom = 141.0
 text = "settings"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
-margin_top = 116.0
-margin_right = 200.0
-margin_bottom = 161.0
+margin_top = 141.0
+margin_right = 232.0
+margin_bottom = 186.0
 text = "credits"
 
 [node name="HowToPlay" type="Button" parent="VBoxContainer"]
-margin_top = 161.0
-margin_right = 200.0
-margin_bottom = 206.0
+margin_top = 186.0
+margin_right = 232.0
+margin_bottom = 231.0
 text = "how to play"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 206.0
-margin_right = 200.0
-margin_bottom = 251.0
+margin_top = 231.0
+margin_right = 232.0
+margin_bottom = 276.0
 text = "quit"
+
+[node name="HeartTween" type="Tween" parent="VBoxContainer"]
+repeat = true
+playback/repeat = true
 
 [node name="Settings" parent="." instance=ExtResource( 3 )]
 visible = false

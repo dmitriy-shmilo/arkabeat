@@ -1,6 +1,5 @@
 extends Control
 
-onready var _quit_button = $VBoxContainer/QuitButton
 onready var _sfx_slider = $VBoxContainer/SfxContainer/SfxSlider
 onready var _music_slider = $VBoxContainer/MusicContainer/MusicSlider
 onready var _enable_particles_checkbox = $VBoxContainer/ParticlesCheckbox
