@@ -3,11 +3,12 @@ extends KinematicBody2D
 
 signal collided(other)
 
-const INITIAL_SPEED = 100.0
+const INITIAL_SPEED = 150.0
 
 export (Vector2) var direction: Vector2 = Vector2.ZERO setget set_direction
 export (float) var speed: float = INITIAL_SPEED
 export (float) var max_speed: float = 500.0
+
 
 onready var _trail_particles = $TrailParticles
 

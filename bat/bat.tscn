@@ -1,11 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://organ/organs.png" type="Texture" id=1]
 [ext_resource path="res://bat/beat.png" type="Texture" id=2]
 [ext_resource path="res://bat/bat.gd" type="Script" id=3]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 24.0
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -46,18 +43,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Rect2( 32, 0, 32, 32 ), Rect2( 0, 0, 32, 32 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Collider:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
 
 [sub_resource type="Animation" id=8]
 resource_name = "Normal"
@@ -78,8 +63,8 @@ tracks/0/keys = {
 position = Vector2( 163.983, 199.9 )
 script = ExtResource( 3 )
 
-[node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -13.794, -11.7639, -0.256805, -16.3066, 11.5541, -12.6724, 15.4608, -3.5871, 4.46758, 15.8555, -4.98119, 16.0372, -16.0653, -4.40479 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

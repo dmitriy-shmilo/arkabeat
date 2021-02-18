@@ -70,7 +70,7 @@ func _unhandled_input(event: InputEvent):
 			get_viewport_rect().size.y)
 		position.x = clamp(_bat.position.x + event.relative.x, \
 			0, get_viewport_rect().size.x)
-		_bat.position = position
+		_bat.desired_position = position
 
 		if _state == GAME_STATE.LAUNCHING:
 			_projectile.position.x = _bat.position.x
