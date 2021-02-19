@@ -48,7 +48,7 @@ position = Vector2( 240, 160 )
 [node name="Organs" type="Node2D" parent="."]
 
 [node name="Stomach" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 217.066, 99.385 )
+position = Vector2( 240, 100 )
 organ_type = 7
 provided_resource = 2
 consumed_resource = 1
@@ -56,40 +56,40 @@ speed_mod = 1.0
 score_mod = 5
 
 [node name="Liver" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 187.769, 184.424 )
+position = Vector2( 200, 190 )
 organ_type = 6
 provided_resource = 3
 consumed_resource = 2
 speed_mod = 2.0
 
 [node name="LeftKidney" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 147.323, 129.201 )
+position = Vector2( 120, 150 )
 organ_type = 3
 provided_resource = 4
 consumed_resource = 1
 speed_mod = -3.0
 
 [node name="RightKidney" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 293.809, 136.719 )
+position = Vector2( 380, 150 )
 organ_type = 4
 provided_resource = 4
 consumed_resource = 1
 speed_mod = -3.0
 
 [node name="RightLung" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 273.906, 58.9973 )
+position = Vector2( 405, 75 )
 organ_type = 2
 provided_resource = 1
 score_mod = 2
 
 [node name="LeftLung" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 143.931, 64.4602 )
+position = Vector2( 75, 75 )
 organ_type = 1
 provided_resource = 1
 score_mod = 2
 
 [node name="Brain" parent="Organs" instance=ExtResource( 5 )]
-position = Vector2( 214.246, 25.3625 )
+position = Vector2( 240, 25 )
 organ_type = 5
 consumed_resource = 3
 score_mod = 20
@@ -286,8 +286,8 @@ current = true
 [connection signal="resource_gained" from="." to="CanvasLayer/GUI" method="_on_Main_resource_gained"]
 [connection signal="resource_lost" from="." to="CanvasLayer/GUI" method="_on_Main_resource_lost"]
 [connection signal="score_changed" from="." to="CanvasLayer/GUI" method="_on_Main_score_changed"]
-[connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
 [connection signal="collided" from="Projectile" to="." method="_on_Projectile_collided"]
+[connection signal="collided" from="Projectile" to="Bat" method="_on_Projectile_collided"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_back_pressed"]
 [connection signal="back_pressed" from="CanvasLayer/GUI/Settings" to="Background" method="_on_Settings_back_pressed"]
 [connection signal="quit_pressed" from="CanvasLayer/GUI/Settings" to="." method="_on_Settings_quit_pressed"]
