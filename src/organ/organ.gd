@@ -11,6 +11,7 @@ enum ORGAN_TYPE {
 	BRAIN,
 	LIVER,
 	STOMACH,
+	INTESTINE,
 }
 
 enum RESOURCE_TYPE {
@@ -133,6 +134,8 @@ func _get_sprite_frame():
 			return 6
 		ORGAN_TYPE.LIVER:
 			return 7
+		ORGAN_TYPE.INTESTINE:
+			return 8
 
 
 func _get_resource_frame(resource):

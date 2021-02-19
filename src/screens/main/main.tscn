@@ -62,6 +62,13 @@ provided_resource = 3
 consumed_resource = 2
 speed_mod = 2.0
 
+[node name="Intestine" parent="Organs" instance=ExtResource( 5 )]
+position = Vector2( 300, 190 )
+organ_type = 8
+provided_resource = 3
+consumed_resource = 2
+speed_mod = 2.0
+
 [node name="LeftKidney" parent="Organs" instance=ExtResource( 5 )]
 position = Vector2( 120, 150 )
 organ_type = 3
