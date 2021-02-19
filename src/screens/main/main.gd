@@ -42,7 +42,6 @@ var _resources: Dictionary = {
 	Organ.RESOURCE_TYPE.OXYGEN : 0,
 	Organ.RESOURCE_TYPE.NUTRITION : 0,
 	Organ.RESOURCE_TYPE.ENERGY : 0,
-	Organ.RESOURCE_TYPE.SLOW_DOWN : 0,
 }
 
 
@@ -51,6 +50,9 @@ func _ready():
 	emit_signal("lives_changed", _lives)
 	_music.stream_paused = false
 	_music.play()
+	
+	for res in _resources.keys():
+		PersistedSettings.gained_resources[res] = 0
 
 
 func _unhandled_key_input(event: InputEventKey):
@@ -155,24 +157,28 @@ func _on_Projectile_collided(other):
 		organ.get_hit()
 		
 		_projectile.speed_up(organ.speed_mod)
-		
+
 		if organ.consumed_resource != Organ.RESOURCE_TYPE.NONE \
 			and _resources[organ.consumed_resource] > 0:
 			organ.consume_if_needed(organ.consumed_resource)
 			_set_score(_score + organ.score_mod)
 			_resources[organ.consumed_resource] = 0
 			emit_signal("resource_lost", organ.consumed_resource)
-		
-		var res = organ.retrieve_resource()
-		
-		if res == Organ.RESOURCE_TYPE.NONE:
+
+		# TODO: this is mess
+		var res = organ.provided_resource
+		if not _resources.has(res):
+			organ.retrieve_resource()
 			return
 		
 		if _resources[res] > 0:
 			return
 
+		organ.retrieve_resource()
+
 		_set_score(_score +  organ.score_mod)
 		_resources[res] = 1
+		PersistedSettings.gained_resources[res] += 1
 		emit_signal("resource_gained", res)
 
 

@@ -4,6 +4,11 @@ const MAX_VOLUME = 100.0
 
 var best_score = 0
 var last_score = 0
+var gained_resources = {
+	Organ.RESOURCE_TYPE.OXYGEN : 0,
+	Organ.RESOURCE_TYPE.NUTRITION : 0,
+	Organ.RESOURCE_TYPE.ENERGY : 0,
+}
 var sfx_volume: float = MAX_VOLUME setget set_sfx_volume
 var music_volume: float = MAX_VOLUME setget set_music_volume
 var enable_particles = true
