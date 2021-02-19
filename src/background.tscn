@@ -6,9 +6,9 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 480, 320 )
+region = Rect2( 0, 0, 580, 320 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 2
 emission_box_extents = Vector3( 240, 1, 1 )
 flag_disable_z = true
@@ -23,11 +23,11 @@ scale = 3.0
 scale_random = 1.0
 color = Color( 0.921569, 0.623529, 0.54902, 1 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 320, 480, 320 )
+region = Rect2( 0, 320, 580, 320 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 2
 emission_box_extents = Vector3( 240, 1, 1 )
 flag_disable_z = true
@@ -38,17 +38,17 @@ scale = 0.5
 scale_random = 1.0
 color = Color( 0.792157, 0.431373, 0.345098, 1 )
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 640, 480, 320 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 960, 480, 320 )
-
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 1280, 480, 320 )
+region = Rect2( 0, 640, 580, 320 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 960, 580, 320 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1280, 580, 320 )
 
 [node name="Background" type="Node2D"]
 script = ExtResource( 3 )
@@ -60,25 +60,25 @@ texture = SubResource( 1 )
 position = Vector2( -1.82797, 164.518 )
 amount = 20
 lifetime = 30.0
-process_material = SubResource( 6 )
+process_material = SubResource( 2 )
 texture = ExtResource( 2 )
 
 [node name="Mid" type="Sprite" parent="."]
-texture = SubResource( 2 )
+texture = SubResource( 3 )
 
 [node name="MidParticles" type="Particles2D" parent="."]
 position = Vector2( -1.82797, 164.518 )
 amount = 5
 lifetime = 30.0
-process_material = SubResource( 7 )
+process_material = SubResource( 4 )
 texture = ExtResource( 2 )
 
 [node name="CloseMid" type="Sprite" parent="."]
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 
 [node name="Front" type="Sprite" parent="."]
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 
 [node name="Particles" type="Sprite" parent="."]
 visible = false
-texture = SubResource( 5 )
+texture = SubResource( 7 )
