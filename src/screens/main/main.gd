@@ -64,24 +64,47 @@ func _unhandled_key_input(event: InputEventKey):
 
 
 func _unhandled_input(event: InputEvent):
-	if _state == GAME_STATE.LAUNCHING and event is InputEventMouseButton:
+	if _state == GAME_STATE.LAUNCHING and event.is_action("launch"):
 		_set_state(GAME_STATE.PLAYING)
-	elif event is InputEventMouseMotion:
+		return
+	
+	var desired_position = _bat.position
+	if event is InputEventMouseMotion:
 		var position = (event as InputEventMouseMotion).position
 		if _mouse_captured:
 			position = _bat.position + event.relative
+		desired_position = position
 
-		position.y = clamp(position.y, \
-			get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
-			get_viewport_rect().size.y)
-		position.x = clamp(position.x, \
-			0, get_viewport_rect().size.x)
-		_bat.desired_position = position
+	_move_bat(desired_position)
 
-		if _state == GAME_STATE.LAUNCHING:
-			_projectile.position.x = _bat.position.x
-			_projectile.position.y = _bat.position.y - PROJECTILE_OFFSET
 
+func _process(delta):
+	var desired_position = _bat.position
+	
+	if Input.is_action_pressed("left"):
+		desired_position.x -= 5
+	elif Input.is_action_pressed("right"):
+		desired_position.x += 5
+
+	if Input.is_action_pressed("down"):
+		desired_position.y += 5
+	elif Input.is_action_pressed("up"):
+		desired_position.y -= 5
+	
+	_move_bat(desired_position)
+
+
+func _move_bat(desired_position: Vector2):
+	desired_position.y = clamp(desired_position.y, \
+		get_viewport_rect().size.y - BAT_Y_ALLOWANCE, \
+		get_viewport_rect().size.y)
+	desired_position.x = clamp(desired_position.x, \
+		0, get_viewport_rect().size.x)
+	_bat.desired_position = desired_position
+	
+	if _state == GAME_STATE.LAUNCHING:
+		_projectile.position.x = _bat.position.x
+		_projectile.position.y = _bat.position.y - PROJECTILE_OFFSET
 
 func _set_state(new_state):
 	_state = new_state
