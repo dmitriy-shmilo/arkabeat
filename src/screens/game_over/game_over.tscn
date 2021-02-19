@@ -70,6 +70,7 @@ texture = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/HBoxContainer/LeftIcon"]
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
@@ -92,6 +93,7 @@ texture = SubResource( 5 )
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="VBoxContainer/HBoxContainer/RightIcon"]
 position = Vector2( 32, 0 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer"]
@@ -110,9 +112,21 @@ custom_colors/font_color = Color( 0.286275, 0.156863, 0.156863, 1 )
 text = "best score"
 align = 1
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 89.0
 margin_right = 288.0
 margin_bottom = 134.0
-text = "continue"
-[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_ContinueButton_pressed"]
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 44.4022
+margin_bottom = 45.0
+text = "quit"
+
+[node name="RetryButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 48.0
+margin_right = 288.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+text = "retry"
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/RetryButton" to="." method="_on_RetryButton_pressed"]

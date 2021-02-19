@@ -12,5 +12,9 @@ func _ready():
 		_best_score_label.text = "your best score was: " + str(PersistedSettings.best_score)
 
 
-func _on_ContinueButton_pressed():
+func _on_QuitButton_pressed():
 	get_tree().change_scene("res://screens/title/title.tscn")
+
+
+func _on_RetryButton_pressed():
+	get_tree().change_scene("res://screens/main/main.tscn")
