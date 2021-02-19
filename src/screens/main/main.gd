@@ -12,6 +12,7 @@ const SCORE_PER_LIFE = 100
 const SPEEDUP_AMOUNT = 10.0
 const BAT_Y_ALLOWANCE = 50.0
 const PROJECTILE_OFFSET = 40.0
+const KEYBOARD_SPEED = 5.0
 
 const PauseScene = preload("res://screens/settings/settings.tscn")
 const LooseStream = preload("res://screens/main/loose.wav")
@@ -79,19 +80,19 @@ func _unhandled_input(event: InputEvent):
 
 
 func _process(delta):
-	var desired_position = _bat.position
+	var desired_position = Vector2.ZERO
 	
 	if Input.is_action_pressed("left"):
-		desired_position.x -= 5
+		desired_position.x = -1
 	elif Input.is_action_pressed("right"):
-		desired_position.x += 5
+		desired_position.x = 1
 
 	if Input.is_action_pressed("down"):
-		desired_position.y += 5
+		desired_position.y = 1
 	elif Input.is_action_pressed("up"):
-		desired_position.y -= 5
-	
-	_move_bat(desired_position)
+		desired_position.y = -1
+
+	_move_bat(_bat.position + desired_position.normalized() * KEYBOARD_SPEED)
 
 
 func _move_bat(desired_position: Vector2):
