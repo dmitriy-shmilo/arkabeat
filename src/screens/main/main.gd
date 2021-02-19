@@ -8,7 +8,7 @@ enum GAME_STATE {
 
 const Organ = preload("res://organ/organ.gd")
 
-const SCORE_PER_LIFE = 100
+const SCORE_PER_LIFE = 50
 const SPEEDUP_AMOUNT = 10.0
 const BAT_Y_ALLOWANCE = 50.0
 const PROJECTILE_OFFSET = 40.0
@@ -119,8 +119,10 @@ func _set_state(new_state):
 
 
 func _set_score(new_score):
+	var old_lives = _score / SCORE_PER_LIFE
 	_score = new_score
-	if _score % SCORE_PER_LIFE == 0:
+	var new_lives = _score / SCORE_PER_LIFE
+	if old_lives < new_lives:
 		_set_lives(_lives + 1)
 		if not _audio.playing:
 			_audio.stream = OneUpStream
